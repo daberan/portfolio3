@@ -1,16 +1,9 @@
 import { Routes } from '@angular/router';
-import { DeviceComponent } from './features/device/device.component';
+import { HomeComponent } from './features/device/screen/home/home.component';
+import { PortfolioComponent } from './features/device/screen/portfolio/portfolio.component';
 
 export const routes: Routes = [
-  {
-    path: 'geraet',
-    component: DeviceComponent,
-    children: [
-      //   { path: 'inhalt1', component: Inhalt1Component },
-      //   { path: 'inhalt2', component: Inhalt2Component },
-      //   { path: 'inhalt3', component: Inhalt3Component },
-      { path: '', redirectTo: 'inhalt1', pathMatch: 'full' },
-    ],
-  },
-  { path: '', redirectTo: 'geraet', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'portfolio', component: PortfolioComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

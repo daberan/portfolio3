@@ -1,4 +1,4 @@
-<div class="device-section">
+<div class="device-section fade-in">
   <div class="device-wrapper">
     <div class="device-left">
       <div class="screen-frame"></div>
@@ -16,7 +16,7 @@
           (mouseup)="getCurrentButtonID(0)"
           (mouseleave)="getCurrentButtonID(0)"
           [class.clicked]="buttonID == 1"
-          (click)="updateLastClickedButtonID(1)"
+          (click)="navigateToScreenPage(1)"
         >
           <div class="button-mid"></div>
           <div class="button-top"></div>
@@ -29,7 +29,7 @@
           (mouseup)="getCurrentButtonID(0)"
           (mouseleave)="getCurrentButtonID(0)"
           [class.clicked]="buttonID == 2"
-          (click)="updateLastClickedButtonID(2)"
+          (click)="navigateToScreenPage(2)"
         >
           <div class="button-mid"></div>
           <div class="button-top"></div>
@@ -42,7 +42,7 @@
           (mouseup)="getCurrentButtonID(0)"
           (mouseleave)="getCurrentButtonID(0)"
           [class.clicked]="buttonID == 3"
-          (click)="updateLastClickedButtonID(3)"
+          (click)="navigateToScreenPage(3)"
         >
           <div class="button-mid"></div>
           <div class="button-top"></div>
@@ -55,7 +55,7 @@
           (mouseup)="getCurrentButtonID(0)"
           (mouseleave)="getCurrentButtonID(0)"
           [class.clicked]="buttonID == 4"
-          (click)="updateLastClickedButtonID(4)"
+          (click)="navigateToScreenPage(4)"
         >
           <div class="button-mid"></div>
           <div class="button-top"></div>
@@ -68,7 +68,7 @@
           (mouseup)="getCurrentButtonID(0)"
           (mouseleave)="getCurrentButtonID(0)"
           [class.clicked]="buttonID == 5"
-          (click)="updateLastClickedButtonID(5)"
+          (click)="navigateToScreenPage(5)"
         >
           <div class="button-mid mid-big"></div>
           <div class="button-top top-big"></div>
