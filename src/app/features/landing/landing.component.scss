@@ -1,0 +1,44 @@
+.landing-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(218, 218, 218);
+
+  > app-device {
+    height: 70%;
+    width: 60%;
+    max-width: 1440px;
+    max-height: 1000px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .landing-section > app-device {
+    height: 70%;
+    width: 80%;
+    max-height: unset;
+  }
+}
+
+@media (max-width: 900px) {
+  .landing-section > app-device {
+    height: 70%;
+    width: 90%;
+  }
+}
+
+@media (max-width: 750px) {
+  .landing-section > app-device {
+    height: 60%;
+    width: 97%;
+  }
+}
+
+@media (max-width: 650px) {
+  .landing-section > app-device {
+    height: 100%;
+    width: 100%;
+  }
+}

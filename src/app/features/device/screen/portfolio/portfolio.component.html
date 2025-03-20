@@ -1,0 +1,24 @@
+<div class="portfolio-section">
+  <div class="cards-wrapper" #cardsWrapper>
+    @for (card of cards; track $index) {
+    <app-card
+      [cardData]="card"
+      [class.isActive]="activeCardID == $index"
+      [class.isGone1]="activeCardID !== $index"
+    ></app-card>
+    }
+  </div>
+  <div class="arrow-wrapper">
+    <img
+      (click)="moveCardToCenter('left')"
+      src="/icons/arrow-left.svg"
+      alt="Previous"
+    />
+    <img
+      (click)="moveCardToCenter('right')"
+      src="/icons/arrow-left.svg"
+      alt="Next"
+      class="arrow-right"
+    />
+  </div>
+</div>

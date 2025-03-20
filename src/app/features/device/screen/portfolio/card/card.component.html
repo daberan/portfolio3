@@ -1,0 +1,30 @@
+<div class="card-section">
+  <div
+    class="card-content-wrapper"
+    [style.background-image]="'url(' + cardData.background + ')'"
+  >
+    <div class="text-wrapper"></div>
+    <video
+      loop
+      autoplay
+      muted
+      preload="auto"
+      [src]="cardData.background"
+      class="background-video"
+      src="cardData.background"
+    ></video>
+    <div class="text-content-wrapper">
+      <div class="title-wrapper">
+        <div class="title">{{ cardData.title }}</div>
+      </div>
+      <div class="description">
+        {{ cardData.description }}
+      </div>
+      <div class="tech-wrapper">
+        @for (item of cardData.software; track $index) {
+        <div class="tech-pill">{{ item }}</div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

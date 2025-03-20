@@ -1,0 +1,81 @@
+<div class="device-section">
+  <div class="device-wrapper">
+    <div class="device-left">
+      <div class="screen-frame"></div>
+      <app-screen></app-screen>
+      <div class="screen-glass"></div>
+    </div>
+    <div class="device-right">
+      <div class="logo-wrapper">
+        <img class="logo" src="/img/db_logo.svg" alt="" />
+      </div>
+      <div class="num-wrapper">
+        <div
+          class="button button-1"
+          (mousedown)="getCurrentButtonID(1)"
+          (mouseup)="getCurrentButtonID(0)"
+          (mouseleave)="getCurrentButtonID(0)"
+          [class.clicked]="buttonID == 1"
+          (click)="updateLastClickedButtonID(1)"
+        >
+          <div class="button-mid"></div>
+          <div class="button-top"></div>
+          <div class="button-rim"></div>
+          <img src="/icons/email.svg" alt="" />
+        </div>
+        <div
+          class="button button-2"
+          (mousedown)="getCurrentButtonID(2)"
+          (mouseup)="getCurrentButtonID(0)"
+          (mouseleave)="getCurrentButtonID(0)"
+          [class.clicked]="buttonID == 2"
+          (click)="updateLastClickedButtonID(2)"
+        >
+          <div class="button-mid"></div>
+          <div class="button-top"></div>
+          <div class="button-rim"></div>
+          <img src="/icons/git.svg" alt="" />
+        </div>
+        <div
+          class="button button-3"
+          (mousedown)="getCurrentButtonID(3)"
+          (mouseup)="getCurrentButtonID(0)"
+          (mouseleave)="getCurrentButtonID(0)"
+          [class.clicked]="buttonID == 3"
+          (click)="updateLastClickedButtonID(3)"
+        >
+          <div class="button-mid"></div>
+          <div class="button-top"></div>
+          <div class="button-rim"></div>
+          <img src="/icons/x.svg" alt="" />
+        </div>
+        <div
+          class="button button-4"
+          (mousedown)="getCurrentButtonID(4)"
+          (mouseup)="getCurrentButtonID(0)"
+          (mouseleave)="getCurrentButtonID(0)"
+          [class.clicked]="buttonID == 4"
+          (click)="updateLastClickedButtonID(4)"
+        >
+          <div class="button-mid"></div>
+          <div class="button-top"></div>
+          <div class="button-rim"></div>
+          <img src="/icons/linkedin.svg" alt="" />
+        </div>
+        <div
+          class="button button-big"
+          (mousedown)="getCurrentButtonID(5)"
+          (mouseup)="getCurrentButtonID(0)"
+          (mouseleave)="getCurrentButtonID(0)"
+          [class.clicked]="buttonID == 5"
+          (click)="updateLastClickedButtonID(5)"
+        >
+          <div class="button-mid mid-big"></div>
+          <div class="button-top top-big"></div>
+
+          <p>Portfolio</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

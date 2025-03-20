@@ -1,0 +1,66 @@
+.portfolio-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  > .cards-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    user-select: none;
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 40px;
+    padding: 16px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    > app-card {
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      transition: width 0s, visibility;
+
+      &.isActive {
+        width: 100%;
+        visibility: visible;
+      }
+      &.isGone {
+        display: none;
+        width: 0%;
+        visibility: hidden;
+        transition: width 0s, visibility;
+      }
+    }
+  }
+
+  > .arrow-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 180px;
+    width: 100%;
+    padding: 28px;
+    z-index: 10;
+    pointer-events: none;
+
+    & :nth-child(2) {
+      transform: rotate(180deg);
+    }
+
+    & img {
+      pointer-events: visible;
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
