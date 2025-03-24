@@ -21,7 +21,13 @@
           <div class="button-mid"></div>
           <div class="button-top"></div>
           <div class="button-rim"></div>
-          <img src="/icons/email.svg" alt="" />
+          <img src="/icons/home.svg" alt="" />
+          <div class="button-light-hole">
+            <div
+              class="button-light-source"
+              [class.turned-on]="lastPressedButton == 1"
+            ></div>
+          </div>
         </div>
         <div
           class="button button-2"
@@ -34,7 +40,13 @@
           <div class="button-mid"></div>
           <div class="button-top"></div>
           <div class="button-rim"></div>
-          <img src="/icons/git.svg" alt="" />
+          <img src="/icons/message.svg" alt="" />
+          <div class="button-light-hole">
+            <div
+              class="button-light-source"
+              [class.turned-on]="lastPressedButton == 2"
+            ></div>
+          </div>
         </div>
         <div
           class="button button-3"
@@ -47,7 +59,13 @@
           <div class="button-mid"></div>
           <div class="button-top"></div>
           <div class="button-rim"></div>
-          <img src="/icons/x.svg" alt="" />
+          <img src="/icons/info.svg" alt="" />
+          <div class="button-light-hole">
+            <div
+              class="button-light-source"
+              [class.turned-on]="lastPressedButton == 3"
+            ></div>
+          </div>
         </div>
         <div
           class="button button-4"
@@ -61,6 +79,12 @@
           <div class="button-top"></div>
           <div class="button-rim"></div>
           <img src="/icons/linkedin.svg" alt="" />
+          <div class="button-light-hole">
+            <div
+              class="button-light-source"
+              [class.turned-on]="lastPressedButton == 4"
+            ></div>
+          </div>
         </div>
         <div
           class="button button-big"
@@ -74,6 +98,12 @@
           <div class="button-top top-big"></div>
 
           <p>Portfolio</p>
+          <div class="button-light-hole">
+            <div
+              class="button-light-source"
+              [class.turned-on]="lastPressedButton == 5"
+            ></div>
+          </div>
         </div>
       </div>
     </div>

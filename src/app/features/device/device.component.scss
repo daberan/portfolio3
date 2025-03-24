@@ -110,6 +110,7 @@
       width: 100%;
       max-width: 280px;
       border-radius: 2px 24px 24px 2px;
+      box-sizing: border-box;
       background: linear-gradient(
           30deg,
           rgba(255, 255, 255, 0) 50%,
@@ -147,15 +148,18 @@
         aspect-ratio: 2/3;
         background-color: #363636;
         border-radius: 16px;
-        gap: 6px;
-        padding: 6px;
+        gap: 4px;
+        padding: 4px;
         z-index: 2;
+        box-sizing: border-box;
 
         > .button {
           display: flex;
           justify-content: center;
           align-items: center;
           position: relative;
+          // height: 128px;
+          // width: 128px;
           border-radius: 12px;
           padding: 6px;
           cursor: pointer;
@@ -165,15 +169,47 @@
             0px -4px 4px 0px rgba(0, 0, 0, 0.59) inset,
             0px 4px 4px 0px rgba(255, 255, 255, 1) inset;
 
-          &:hover {
-            transition: all 0.2s ease-in-out;
-            transform: scale(1.025);
-          }
-
           &.clicked {
             transition: all ease-out 0s;
             transform: scale(0.97) !important;
             filter: brightness(0.9);
+          }
+
+          > .button-light-hole {
+            position: absolute;
+            display: flex;
+            padding: 2px;
+            height: 16px;
+            width: 16px;
+            background-color: #363636;
+            border-radius: 100%;
+            top: 7px;
+            right: 7px;
+            box-sizing: border-box;
+            box-shadow: 0px 4px 1.7px 0px rgba(0, 0, 0, 0.25) inset,
+              0px -0.5px 1px 0px rgba(0, 0, 0, 0.62),
+              0px 1px 1px 0px rgba(255, 255, 255, 1);
+
+            > .button-light-source {
+              box-sizing: border-box;
+              height: 100%;
+              width: 100%;
+              background: rgba(44, 56, 40, 1);
+              border-radius: 100%;
+              box-shadow: 0px 0px 0.3px 0.1px rgba(0, 0, 0, 1) inset,
+                0px 0.5px 1px 0px rgba(235, 255, 188, 0.5) inset,
+                0px -4px 11.3px 0px rgba(30, 49, 11, 0.25) inset,
+                0px 4px 4px 0px rgba(240, 255, 172, 0.25) inset;
+
+              &.turned-on {
+                background: rgba(84, 217, 35, 1) !important;
+                box-shadow: 0px 0px 9.1px 0px rgba(129, 255, 90, 1),
+                  0px 0px 0.3px 0.1px rgba(0, 0, 0, 1) inset,
+                  0px 0.5px 1px 0px rgba(235, 255, 188, 1) inset,
+                  0px -4px 11.3px 0px rgba(30, 49, 11, 0.25) inset,
+                  0px 4px 4px 0px rgba(240, 255, 172, 0.25) inset !important;
+              }
+            }
           }
 
           > p {
@@ -245,8 +281,8 @@
 
           > .button-rim {
             position: relative;
-            height: 89%;
-            width: 89%;
+            height: 90%;
+            width: 90%;
             border-radius: 24px;
             background-clip: padding-box;
             border: 1px solid transparent;

@@ -77,13 +77,27 @@
       display: none;
     }
   }
+}
 
-  > app-portfolio {
-    height: 100%;
-    width: 100%;
+@media (max-width: 650px) {
+  .home-section {
+    > .text-wrapper {
+      padding: 32px;
+      gap: 8px;
 
-    &.none {
-      display: none;
+      > .text1 {
+        font-size: 24px;
+      }
+      > .text2 {
+        font-size: 18px;
+      }
+    }
+
+    > app-rive {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }

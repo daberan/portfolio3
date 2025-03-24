@@ -14,6 +14,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null;
   buttonID: number = 0;
   page: string = 'home';
+  lastPressedButton: number = 1;
 
   constructor(
     private buttonHandlerService: ButtonHandlerService,
@@ -39,9 +40,17 @@ export class DeviceComponent implements OnInit, OnDestroy {
     this.buttonHandlerService.updateButtonID(ID);
   }
 
+  updateLastPressedButton(ID: number) {
+    if (ID !== 0) {
+      this.lastPressedButton = ID;
+    }
+    console.log('last:', this.lastPressedButton);
+  }
+
   ngOnInit(): void {
     this.buttonHandlerService.buttonID$.subscribe((ID) => {
       this.buttonID = ID;
+      this.updateLastPressedButton(ID);
     });
   }
 
