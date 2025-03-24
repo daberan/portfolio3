@@ -1,12 +1,9 @@
 <div class="portfolio-section">
-  <div class="overlay fade-in"></div>
+  <div class="overlay"></div>
   <div class="cards-wrapper" #cardsWrapper>
     @for (card of cards; track $index) {
-    <app-card
-      [cardData]="card"
-      [class.isActive]="activeCardID == $index"
-      [class.isGone1]="activeCardID !== $index"
-    ></app-card>
+    <app-card [cardData]="card" [class.isActive]="activeCardID == $index">
+    </app-card>
     }
   </div>
   <div class="arrow-wrapper">

@@ -23,9 +23,13 @@
 
     > .background-video {
       position: absolute;
-      left: -250px;
+      left: -50px;
       height: 100%;
       object-fit: cover;
+      background-repeat: none;
+      background-position: center;
+      pointer-events: none;
+      touch-action: none;
     }
 
     > .text-wrapper {

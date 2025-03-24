@@ -33,17 +33,34 @@ export class PortfolioComponent implements AfterViewInit {
   velocityTracker: number[] = [];
   momentumAnimationId: number | null = null;
   lastTimestamp = 0;
+  videoElements: HTMLCollectionOf<Element> =
+    document.getElementsByClassName('background-video');
 
   constructor(private ngZone: NgZone, private cardData: CardDataService) {
     this.cards = cardData.cardData;
+  }
+
+  handleVideoPlay() {
+    let index = -1;
+    Array.from(this.videoElements).forEach((element) => {
+      index += 1;
+      const video = element as HTMLVideoElement;
+      if (index == this.activeCardID) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
   }
 
   ngAfterViewInit() {
     const scrollContainer = document.querySelector('.cards-wrapper');
     scrollContainer!.addEventListener('scroll', () => {
       this.activeCardID = this.getCardAtCenter();
+      this.handleVideoPlay();
     });
     this.initDragScroll();
+    this.handleVideoPlay();
   }
 
   initDragScroll() {
@@ -62,18 +79,26 @@ export class PortfolioComponent implements AfterViewInit {
 
       // Prevent default browser drag behavior on desktop
       slider.addEventListener('dragstart', (e: Event) => e.preventDefault());
+    } else {
+      // For touch devices, ONLY set up the card center detection on touchend
+      slider.addEventListener('touchend', () => {
+        // Short delay to let native scroll finish
+        setTimeout(() => {
+          this.activeCardID = this.getCardAtCenter();
+        }, 100);
+      });
     }
-
-    // Touch events - let browser handle physics
-    slider.addEventListener('touchstart', this.startDragging.bind(this));
-    slider.addEventListener('touchmove', this.drag.bind(this));
-    slider.addEventListener('touchend', this.stopDragging.bind(this));
 
     // Make the slider scrollable with -webkit-overflow-scrolling: touch for iOS
     slider.style.webkitOverflowScrolling = 'touch';
   }
 
   startDragging(e: any) {
+    // Ignore touch events completely - let the browser handle them
+    if (e.type === 'touchstart') {
+      return;
+    }
+
     if (this.momentumAnimationId !== null) {
       cancelAnimationFrame(this.momentumAnimationId);
       this.momentumAnimationId = null;
@@ -82,76 +107,65 @@ export class PortfolioComponent implements AfterViewInit {
     this.isDragging = true;
     const slider: any = document.querySelector('.cards-wrapper');
 
-    const isTouchEvent = e.type === 'touchstart';
-
-    if (isTouchEvent) {
-      this.startX = e.touches[0].pageX - slider.offsetLeft;
-      this.lastMouseX = e.touches[0].pageX;
-    } else {
-      this.startX = e.pageX - slider.offsetLeft;
-      this.lastMouseX = e.pageX;
-    }
-
+    this.startX = e.pageX - slider.offsetLeft;
+    this.lastMouseX = e.pageX;
     this.scrollLeft = slider.scrollLeft;
 
-    // Only initialize velocity tracking for desktop (non-touch) events
-    if (!isTouchEvent) {
-      this.velocityTracker = [];
-      this.lastTimestamp = Date.now();
-    }
+    // Initialize velocity tracking
+    this.velocityTracker = [];
+    this.lastTimestamp = Date.now();
   }
 
   drag(e: any) {
+    // Ignore touch events completely - let the browser handle them
+    if (e.type === 'touchmove') {
+      return;
+    }
+
     if (!this.isDragging) return;
 
     const slider: any = document.querySelector('.cards-wrapper');
-    let x;
-    const isTouchEvent = e.type === 'touchmove';
+    const x = e.pageX - slider.offsetLeft;
+    e.preventDefault();
 
-    if (isTouchEvent) {
-      x = e.touches[0].pageX - slider.offsetLeft;
-      // For touch events, we don't track velocity - let the native system handle it
-    } else {
-      x = e.pageX - slider.offsetLeft;
-      e.preventDefault();
+    // Track velocity
+    const now = Date.now();
+    const dt = now - this.lastTimestamp;
+    if (dt > 0) {
+      const dx = e.pageX - this.lastMouseX;
+      const velocity = dx / dt;
 
-      // Track velocity only for desktop events
-      const now = Date.now();
-      const dt = now - this.lastTimestamp;
-      if (dt > 0) {
-        const dx = e.pageX - this.lastMouseX;
-        const velocity = dx / dt;
-
-        // Store last 5 velocity samples
-        this.velocityTracker.push(velocity);
-        if (this.velocityTracker.length > 5) {
-          this.velocityTracker.shift();
-        }
-
-        this.lastMouseX = e.pageX;
-        this.lastTimestamp = now;
+      // Store last 5 velocity samples
+      this.velocityTracker.push(velocity);
+      if (this.velocityTracker.length > 5) {
+        this.velocityTracker.shift();
       }
+
+      this.lastMouseX = e.pageX;
+      this.lastTimestamp = now;
     }
 
     const walk = (x - this.startX) * 1;
     slider.scrollLeft = this.scrollLeft - walk;
   }
 
-  stopDragging() {
+  stopDragging(e: any) {
+    // Ignore touch events completely - let the browser handle them
+    if (e && e.type && e.type.startsWith('touch')) {
+      return;
+    }
+
     if (!this.isDragging) return;
 
     this.isDragging = false;
 
-    // Only apply momentum for mouse events (desktop), not touch events
-    const isTouchDevice =
-      'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-    if (!isTouchDevice && this.velocityTracker.length > 0) {
+    // Only apply momentum for mouse events
+    if (this.velocityTracker.length > 0) {
       this.velocityX =
         this.velocityTracker.reduce((sum, v) => sum + v, 0) /
         this.velocityTracker.length;
 
-      // Scale for better feel (multiplier can be adjusted)
+      // Scale for better feel
       this.velocityX *= 15;
 
       // Apply momentum if velocity is significant
@@ -162,7 +176,7 @@ export class PortfolioComponent implements AfterViewInit {
         this.activeCardID = this.getCardAtCenter();
       }
     } else {
-      // For touch devices, just update the active card ID
+      // Update the active card ID
       this.activeCardID = this.getCardAtCenter();
     }
   }
@@ -196,29 +210,6 @@ export class PortfolioComponent implements AfterViewInit {
 
       this.momentumAnimationId = requestAnimationFrame(animate);
     });
-  }
-
-  snapToActiveCard() {
-    const activeCard = document.querySelector('.isActive');
-    const scrollContainer = document.querySelector('.cards-wrapper');
-
-    if (activeCard && scrollContainer) {
-      const containerRect = document
-        .querySelector('.portfolio-section')!
-        .getBoundingClientRect();
-      const containerCenter = containerRect.left + containerRect.width / 2;
-
-      const cardRect = activeCard.getBoundingClientRect();
-      const cardCenter = cardRect.left + cardRect.width / 2;
-
-      const scrollAdjustment = cardCenter - containerCenter;
-      const targetScrollLeft = scrollContainer.scrollLeft + scrollAdjustment;
-
-      scrollContainer.scroll({
-        left: targetScrollLeft,
-        behavior: 'smooth',
-      });
-    }
   }
 
   moveCardToCenter(direction: string) {

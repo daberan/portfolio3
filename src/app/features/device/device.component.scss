@@ -82,8 +82,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        height: calc(100% - 64px);
-        width: calc(100% - 64px);
+        height: calc(100% - 60px);
+        width: calc(100% - 60px);
         border-radius: 6px;
         pointer-events: none;
         background: linear-gradient(
@@ -318,6 +318,22 @@
       > .device-left {
         min-width: unset;
         border-radius: 24px 24px 2px 2px;
+
+        > .screen-frame {
+          display: none;
+        }
+        > .screen-glass {
+          display: none;
+          height: calc(100% - 30px);
+          width: calc(100% - 30px);
+          border-radius: 18px;
+        }
+        > app-screen {
+          height: calc(100% - 24px);
+          width: calc(100% - 24px);
+          border-radius: 16px;
+          overflow: hidden;
+        }
       }
       > .device-right {
         display: flex;

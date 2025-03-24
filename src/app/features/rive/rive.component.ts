@@ -37,8 +37,6 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
       autoplay: true,
       stateMachines: 'lookAround',
       onLoad: () => {
-        console.log('Available animations:', this.rive!.animationNames);
-        console.log('Available state machines:', this.rive!.stateMachineNames);
         this.rive!.resizeDrawingSurfaceToCanvas();
 
         const inputs = this.rive!.stateMachineInputs('lookAround');
@@ -56,10 +54,6 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.canvasCenterX = rect.left + rect.width / 2;
     this.canvasCenterY = rect.top + rect.height / 2;
-
-    console.log(
-      `Updated Canvas Center: (${this.canvasCenterX}, ${this.canvasCenterY})`
-    );
   };
 
   private updateMousePosition = (e: MouseEvent) => {

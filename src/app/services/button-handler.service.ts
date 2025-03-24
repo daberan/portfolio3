@@ -12,6 +12,5 @@ export class ButtonHandlerService {
 
   updateButtonID(ID: number) {
     this.buttonID.next(ID);
-    console.log('button ID:', ID);
   }
 }
