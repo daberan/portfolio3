@@ -1,32 +1,22 @@
-.overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: #c2bfb8;
-  border-radius: 6px;
-  opacity: 1;
-  pointer-events: none;
-
-  &.fade-in {
-    animation: fadeIn 10s cubic-bezier(0.046, 0.218, 0.19, 1) forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-}
-
 .portfolio-section {
   display: flex;
   align-items: center;
   height: 100%;
   width: 100%;
   border-radius: 24px;
+
+  &.fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.05, 0.22, 0.2, 1);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   > .cards-wrapper {
     display: flex;

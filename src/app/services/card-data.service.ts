@@ -40,21 +40,5 @@ export class CardDataService {
       background: 'videos/portfolio.mp4',
       description: '',
     },
-    {
-      title: 'string',
-      software: ['string', 'string'],
-      skills: ['string', 'string'],
-      links: ['string'],
-      background: '',
-      description: '',
-    },
-    {
-      title: 'string',
-      software: ['string', 'string'],
-      skills: ['string', 'string'],
-      links: ['string'],
-      background: '',
-      description: '',
-    },
   ];
 }

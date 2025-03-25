@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  min-width: 512px;
+  min-width: 564px;
   height: 100%;
   padding: 0px;
 
@@ -23,7 +23,7 @@
 
     > .background-video {
       position: absolute;
-      left: -50px;
+      left: -150px;
       height: 100%;
       object-fit: cover;
       background-repeat: none;
@@ -153,6 +153,9 @@
     width: 100%;
     min-width: 300px;
     > .card-content-wrapper {
+      > .background-video {
+        left: -50px;
+      }
       > .text-wrapper {
       }
 

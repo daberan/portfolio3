@@ -1,6 +1,8 @@
 @font-face {
   font-family: "Inter";
   src: url(/fonts/Inter.ttf) format("truetype");
+  font-style: normal;
+  font-display: swap;
 }
 
 .overlay {
@@ -15,7 +17,7 @@
   pointer-events: none;
 
   &.fade-in {
-    animation: fadeIn 0.2s cubic-bezier(0.046, 0.218, 0.19, 1) forwards;
+    animation: fadeIn 0.5s cubic-bezier(0.046, 0.218, 0.19, 1) forwards;
   }
 
   @keyframes fadeIn {
@@ -56,7 +58,7 @@
 
     > .text1 {
       font-size: 36px;
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: -5%;
       line-height: 96%;
     }
@@ -72,6 +74,7 @@
     position: absolute;
     top: 40%;
     left: 50%;
+    width: 80%;
     transform: translate(-50%, -50%);
     &.none {
       display: none;
@@ -82,7 +85,7 @@
 @media (max-width: 650px) {
   .home-section {
     > .text-wrapper {
-      padding: 32px;
+      padding: 24px;
       gap: 8px;
 
       > .text1 {

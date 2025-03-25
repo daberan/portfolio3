@@ -51,6 +51,7 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
   private updateCanvasCenter = () => {
     const canvas = this.canvasRef.nativeElement;
     const rect = canvas.getBoundingClientRect();
+    this.rive?.resizeDrawingSurfaceToCanvas();
 
     this.canvasCenterX = rect.left + rect.width / 2;
     this.canvasCenterY = rect.top + rect.height / 2;

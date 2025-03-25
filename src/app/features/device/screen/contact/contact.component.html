@@ -1,35 +1,47 @@
-<div class="contact-section">
+<div class="contact-section fade-in">
   <div class="contact-wrapper">
-    <!-- <app-rive></app-rive> -->
-    <form action="action_page.php">
+    <form (ngSubmit)="submit(contactForm)" #contactForm="ngForm">
       <div class="input-wrapper">
         <div class="label-wrapper">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name.." />
+          <input
+            [(ngModel)]="contactData.name"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name.."
+            required
+          />
         </div>
 
         <div class="label-wrapper">
           <label for="emil">Email</label>
           <input
+            [(ngModel)]="contactData.email"
             type="email"
             id="email"
             name="email"
             placeholder="Your  email.."
+            required
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
           />
         </div>
 
         <div class="label-wrapper">
           <label for="subject">Subject</label>
           <textarea
+            [(ngModel)]="contactData.subject"
             id="subject"
             name="subject"
             placeholder="Write something.."
             style="height: 100px"
+            required
           ></textarea>
         </div>
       </div>
 
       <input type="submit" value="Submit" />
     </form>
+    <!-- <app-rive></app-rive> -->
   </div>
 </div>
