@@ -27,7 +27,7 @@
       touch-action: none;
     }
 
-    > .text-wrapper {
+    > .blur {
       height: 85%;
       width: 100%;
       background: linear-gradient(to top, #373737a1 30%, #ffffff00 100%);
@@ -85,11 +85,12 @@
     width: 100%;
     min-width: 320px;
     > .card-content-wrapper {
-      > .text-wrapper {
+      > .blur {
+        height: 100%;
       }
 
       > .text-content-wrapper {
-        top: 70%;
+        top: 60%;
         padding: 12px;
 
         > .title-wrapper {
@@ -116,11 +117,11 @@
     width: 100%;
     min-width: 300px;
     > .card-content-wrapper {
-      > .text-wrapper {
+      > .blur {
       }
 
       > .text-content-wrapper {
-        top: 65%;
+        top: 55%;
         padding: 8px;
 
         > .title-wrapper {
@@ -154,7 +155,7 @@
       }
 
       > .text-content-wrapper {
-        top: 60%;
+        top: 55%;
         padding: 8px;
 
         > .title-wrapper {
@@ -182,7 +183,7 @@
     min-width: 300px;
     > .card-content-wrapper {
       > .text-content-wrapper {
-        top: 68%;
+        top: 60%;
         padding: 8px;
       }
     }
@@ -193,5 +194,11 @@
   .card-section {
     width: 100%;
     min-width: 300px;
+    > .card-content-wrapper {
+      > .text-content-wrapper {
+        top: 60%;
+        padding: 8px;
+      }
+    }
   }
 }

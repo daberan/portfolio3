@@ -3,7 +3,6 @@
     class="card-content-wrapper"
     [style.background-image]="'url(' + cardData.background + ')'"
   >
-    <div class="text-wrapper"></div>
     <video
       loop
       muted
@@ -13,6 +12,7 @@
       class="background-video"
       src="cardData.background"
     ></video>
+    <div class="blur"></div>
     <div class="text-content-wrapper">
       <div class="title-wrapper">
         <div class="title">{{ cardData.title }}</div>

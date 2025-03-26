@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  numberAttribute,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ButtonHandlerService } from '../../services/button-handler.service';
 import { Subscription } from 'rxjs';
 import { ScreenComponent } from './screen/screen.component';
@@ -14,30 +20,54 @@ export class DeviceComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null;
   buttonID: number = 0;
   page: string = 'home';
-  lastPressedButton: number = 0;
+  lastPressedButton: number = 1;
 
   constructor(
     private buttonHandlerService: ButtonHandlerService,
     private router: Router
   ) {}
 
+  @HostListener('window:wheel', ['$event'])
+  onScrollWheel(event: WheelEvent) {
+    let jump: number = 1;
+
+    if (event.deltaY > 0) {
+      if (this.lastPressedButton == 3) {
+        jump = 2;
+      }
+      if (this.lastPressedButton == 5) {
+        jump = 2;
+        this.lastPressedButton = -1;
+      }
+      this.navigateToScreenPage((this.lastPressedButton += jump));
+    } else if (event.deltaY < 0) {
+      if (this.lastPressedButton == 5) {
+        jump = 2;
+      }
+      if (this.lastPressedButton == 1) {
+        this.lastPressedButton = 6;
+      }
+
+      this.navigateToScreenPage((this.lastPressedButton -= jump));
+    }
+    this.getCurrentButtonID(this.lastPressedButton);
+  }
+
   navigateToScreenPage(ID: number): void {
     if (ID == 1) {
       this.page = 'home';
     } else if (ID == 2) {
-      this.page = 'contact';
-    } else if (ID == 3) {
       this.page = 'about';
+    } else if (ID == 3) {
+      this.page = 'contact';
     } else if (ID == 4) {
       window.open('https://www.linkedin.com/in/davidberan89/', '_blank');
-      console.log('bid', this.buttonID);
 
       return;
     } else if (ID == 5) {
       this.page = 'portfolio';
     }
     this.router.navigate([this.page]);
-    console.log(this.lastPressedButton);
   }
 
   getCurrentButtonID(ID: number) {
@@ -60,7 +90,11 @@ export class DeviceComponent implements OnInit, OnDestroy {
     if (ID !== 0) {
       this.lastPressedButton = ID;
     }
-    console.log('last:', this.lastPressedButton);
+  }
+
+  scrollWheel() {
+    console.log('scrolled');
+    this.navigateToScreenPage(1);
   }
 
   ngOnInit(): void {
@@ -75,5 +109,6 @@ export class DeviceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
+    window.removeEventListener('wheel', () => this.scrollWheel);
   }
 }

@@ -70,36 +70,27 @@ export class PortfolioComponent implements AfterViewInit {
 
   initDragScroll() {
     const slider: any = document.querySelector('.cards-wrapper');
-
-    // Check if this is a touch device
     const isTouchDevice =
       'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     if (!isTouchDevice) {
-      // Desktop only - custom physics
       slider.addEventListener('mousedown', this.startDragging.bind(this));
       slider.addEventListener('mousemove', this.drag.bind(this));
       slider.addEventListener('mouseup', this.stopDragging.bind(this));
       slider.addEventListener('mouseleave', this.stopDragging.bind(this));
-
-      // Prevent default browser drag behavior on desktop
       slider.addEventListener('dragstart', (e: Event) => e.preventDefault());
     } else {
-      // For touch devices, ONLY set up the card center detection on touchend
       slider.addEventListener('touchend', () => {
-        // Short delay to let native scroll finish
         setTimeout(() => {
           this.activeCardID = this.getCardAtCenter();
         }, 100);
       });
     }
 
-    // Make the slider scrollable with -webkit-overflow-scrolling: touch for iOS
     slider.style.webkitOverflowScrolling = 'touch';
   }
 
   startDragging(e: any) {
-    // Ignore touch events completely - let the browser handle them
     if (e.type === 'touchstart') {
       return;
     }
@@ -116,36 +107,30 @@ export class PortfolioComponent implements AfterViewInit {
     this.lastMouseX = e.pageX;
     this.scrollLeft = slider.scrollLeft;
 
-    // Initialize velocity tracking
     this.velocityTracker = [];
     this.lastTimestamp = Date.now();
   }
 
   drag(e: any) {
-    // Ignore touch events completely - let the browser handle them
     if (e.type === 'touchmove') {
       return;
     }
-
     if (!this.isDragging) return;
 
     const slider: any = document.querySelector('.cards-wrapper');
     const x = e.pageX - slider.offsetLeft;
     e.preventDefault();
 
-    // Track velocity
     const now = Date.now();
     const dt = now - this.lastTimestamp;
     if (dt > 0) {
       const dx = e.pageX - this.lastMouseX;
       const velocity = dx / dt;
 
-      // Store last 5 velocity samples
       this.velocityTracker.push(velocity);
       if (this.velocityTracker.length > 5) {
         this.velocityTracker.shift();
       }
-
       this.lastMouseX = e.pageX;
       this.lastTimestamp = now;
     }
@@ -155,43 +140,31 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   stopDragging(e: any) {
-    // Ignore touch events completely - let the browser handle them
     if (e && e.type && e.type.startsWith('touch')) {
       return;
     }
-
     if (!this.isDragging) return;
-
     this.isDragging = false;
-
-    // Only apply momentum for mouse events
     if (this.velocityTracker.length > 0) {
       this.velocityX =
         this.velocityTracker.reduce((sum, v) => sum + v, 0) /
         this.velocityTracker.length;
 
-      // Scale for better feel
       this.velocityX *= 15;
-
-      // Apply momentum if velocity is significant
       if (Math.abs(this.velocityX) > 0.5) {
         this.applyMomentum();
       } else {
-        // If velocity is too small, just update active card ID
         this.activeCardID = this.getCardAtCenter();
       }
     } else {
-      // Update the active card ID
       this.activeCardID = this.getCardAtCenter();
     }
   }
 
   applyMomentum() {
-    // Using NgZone.runOutsideAngular for better performance
     this.ngZone.runOutsideAngular(() => {
       const slider: any = document.querySelector('.cards-wrapper');
       let lastTimestamp = performance.now();
-
       const animate = (timestamp: number) => {
         if (Math.abs(this.velocityX) < 0.1) {
           this.ngZone.run(() => {
@@ -199,26 +172,18 @@ export class PortfolioComponent implements AfterViewInit {
           });
           return;
         }
-
         const elapsed = timestamp - lastTimestamp;
         lastTimestamp = timestamp;
-
-        // Apply friction (can be adjusted for different physics feel)
         const friction = 0.95;
         this.velocityX *= friction;
-
-        // Apply velocity to scroll position
         slider.scrollLeft -= (this.velocityX * elapsed) / 30;
-
         this.momentumAnimationId = requestAnimationFrame(animate);
       };
-
       this.momentumAnimationId = requestAnimationFrame(animate);
     });
   }
 
   moveCardToCenter(direction: string) {
-    // Cancel any ongoing momentum animation
     if (this.momentumAnimationId !== null) {
       cancelAnimationFrame(this.momentumAnimationId);
       this.momentumAnimationId = null;
@@ -233,7 +198,6 @@ export class PortfolioComponent implements AfterViewInit {
       this.activeCardID += 1;
     }
 
-    // Smoothly scroll to the selected card
     setTimeout(() => {
       const activeCard = document.querySelector('.isActive');
       const scrollContainer = document.querySelector('.cards-wrapper');
