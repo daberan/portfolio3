@@ -130,8 +130,6 @@
         justify-content: end;
         height: 100%;
         width: 100%;
-        z-index: 2;
-        // background-color: azure;
 
         > .logo {
           height: 64px;
@@ -211,7 +209,6 @@
           }
 
           > p {
-            font-family: "Inter";
             position: absolute;
             font-size: 22px;
             font-weight: 400;
@@ -392,7 +389,6 @@
           grid-template-rows: 1fr 1fr;
 
           > .button {
-            // background-color: aliceblue;
             border-radius: 10px;
           }
 

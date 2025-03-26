@@ -17,6 +17,7 @@ import { CardDataService } from '../../../../services/card-data.service';
 })
 export class PortfolioComponent implements AfterViewInit {
   @ViewChild('cardsWrapper') cardsWrapper!: ElementRef;
+  fadeIn = true;
 
   cards: any = [];
   cardIsClicked: boolean = false;
@@ -54,6 +55,10 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.fadeIn = true;
+    setTimeout(() => {
+      this.fadeIn = false;
+    }, 700);
     const scrollContainer = document.querySelector('.cards-wrapper');
     scrollContainer!.addEventListener('scroll', () => {
       this.activeCardID = this.getCardAtCenter();

@@ -1,4 +1,4 @@
-<div class="portfolio-section fade-in">
+<div class="portfolio-section" [class.fade-in]="fadeIn">
   <div class="cards-wrapper" #cardsWrapper>
     @for (card of cards; track $index) {
     <app-card [cardData]="card" [class.isActive]="activeCardID == $index">

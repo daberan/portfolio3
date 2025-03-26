@@ -1,10 +1,12 @@
-<div class="contact-section fade-in">
+<div class="contact-section" [class.fade-in]="fadeIn">
   <div class="contact-wrapper">
-    <form (ngSubmit)="submit(contactForm)" #contactForm="ngForm">
+    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
       <div class="input-wrapper">
         <div class="label-wrapper">
           <label for="name">Name</label>
           <input
+            #name="ngModel"
+            minlength="1"
             [(ngModel)]="contactData.name"
             type="text"
             id="name"
@@ -17,6 +19,8 @@
         <div class="label-wrapper">
           <label for="emil">Email</label>
           <input
+            #email="ngModel"
+            minlength="1"
             [(ngModel)]="contactData.email"
             type="email"
             id="email"
@@ -30,7 +34,9 @@
         <div class="label-wrapper">
           <label for="subject">Subject</label>
           <textarea
-            [(ngModel)]="contactData.subject"
+            #message="ngModel"
+            minlength="1"
+            [(ngModel)]="contactData.message"
             id="subject"
             name="subject"
             placeholder="Write something.."
@@ -40,7 +46,21 @@
         </div>
       </div>
 
-      <input type="submit" value="Submit" />
+      <div class="button-wrapper">
+        <input type="submit" value="submit" />
+
+        <div class="error-wrapper">
+          @if (!name.valid && name.touched) {
+          <p>Please enter a name!</p>
+          } @if (!email.valid && email.touched) {
+          <p>Please enter a valid email adress!</p>
+          } @if (!message.valid && message.touched) {
+          <p>Please enter a message!</p>
+          }@if (submitSuccess) {
+          <p class="success">Message sent!</p>
+          }
+        </div>
+      </div>
     </form>
     <!-- <app-rive></app-rive> -->
   </div>

@@ -1,4 +1,11 @@
+@font-face {
+  font-family: "Inter";
+  src: url(/fonts/Inter.ttf);
+  font-display: swap;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: "Inter";
 }
