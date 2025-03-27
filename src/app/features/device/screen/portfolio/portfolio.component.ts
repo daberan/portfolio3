@@ -41,17 +41,25 @@ export class PortfolioComponent implements AfterViewInit {
     this.cards = cardData.cardData;
   }
 
-  handleVideoPlay() {
+  async handleVideoPlay() {
     let index = -1;
-    Array.from(this.videoElements).forEach((element) => {
-      index += 1;
-      const video = element as HTMLVideoElement;
-      if (index == this.activeCardID) {
-        video.play();
-      } else {
-        video.pause();
+    const videoPromises = Array.from(this.videoElements).map(
+      async (element) => {
+        index += 1;
+        const video = element as HTMLVideoElement;
+
+        if (index === this.activeCardID) {
+          try {
+            await video.play();
+          } catch (error) {
+            console.error('Error playing video:', error);
+          }
+        } else {
+          video.pause();
+        }
       }
-    });
+    );
+    await Promise.all(videoPromises);
   }
 
   ngAfterViewInit() {

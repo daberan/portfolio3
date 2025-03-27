@@ -1,67 +1,64 @@
 <div class="contact-section" [class.fade-in]="fadeIn">
-  <div class="contact-wrapper">
-    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
-      <div class="input-wrapper">
-        <div class="label-wrapper">
-          <label for="name">Name</label>
-          <input
-            #name="ngModel"
-            minlength="1"
-            [(ngModel)]="contactData.name"
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your name.."
-            required
-          />
-        </div>
-
-        <div class="label-wrapper">
-          <label for="emil">Email</label>
-          <input
-            #email="ngModel"
-            minlength="1"
-            [(ngModel)]="contactData.email"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your  email.."
-            required
-            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-          />
-        </div>
-
-        <div class="label-wrapper">
-          <label for="subject">Subject</label>
-          <textarea
-            #message="ngModel"
-            minlength="1"
-            [(ngModel)]="contactData.message"
-            id="subject"
-            name="subject"
-            placeholder="Write something.."
-            style="height: 100px"
-            required
-          ></textarea>
-        </div>
+  <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+    <div class="input-wrapper">
+      <div class="label-wrapper">
+        <label for="name">Name</label>
+        <input
+          #name="ngModel"
+          minlength="1"
+          [(ngModel)]="contactData.name"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your name.."
+          required
+        />
       </div>
 
-      <div class="button-wrapper">
-        <input type="submit" value="submit" />
-
-        <div class="error-wrapper">
-          @if (!name.valid && name.touched) {
-          <p>Please enter a name!</p>
-          } @if (!email.valid && email.touched) {
-          <p>Please enter a valid email adress!</p>
-          } @if (!message.valid && message.touched) {
-          <p>Please enter a message!</p>
-          }@if (submitSuccess) {
-          <p class="success">Message sent!</p>
-          }
-        </div>
+      <div class="label-wrapper">
+        <label for="emil">Email</label>
+        <input
+          #email="ngModel"
+          minlength="1"
+          [(ngModel)]="contactData.email"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your  email.."
+          required
+          pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+        />
       </div>
-    </form>
-    <!-- <app-rive></app-rive> -->
-  </div>
+
+      <div class="label-wrapper">
+        <label for="subject">Subject</label>
+        <textarea
+          #message="ngModel"
+          minlength="1"
+          [(ngModel)]="contactData.message"
+          id="subject"
+          name="subject"
+          placeholder="Write something.."
+          style="height: 100px"
+          required
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="button-wrapper">
+      <input type="submit" value="submit" />
+
+      <div class="error-wrapper">
+        @if (!name.valid && name.touched) {
+        <p>Please enter a name!</p>
+        } @if (!email.valid && email.touched) {
+        <p>Please enter a valid email adress!</p>
+        } @if (!message.valid && message.touched) {
+        <p>Please enter a message!</p>
+        }@if (submitSuccess) {
+        <p class="success">Message sent!</p>
+        }
+      </div>
+    </div>
+  </form>
 </div>

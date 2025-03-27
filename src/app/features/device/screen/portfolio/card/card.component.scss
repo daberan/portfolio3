@@ -28,6 +28,7 @@
     }
 
     > .blur {
+      position: absolute;
       height: 85%;
       width: 100%;
       background: linear-gradient(to top, #373737a1 30%, #ffffff00 100%);
@@ -41,13 +42,11 @@
     }
 
     > .text-content-wrapper {
-      position: absolute;
       display: flex;
       flex-direction: column;
+      width: 100%;
       gap: 8px;
-      padding: 22px;
-      top: 65%;
-      left: 0;
+      padding: 24px;
       z-index: 10;
       > .title-wrapper {
         display: flex;
@@ -65,15 +64,35 @@
       > .tech-wrapper {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
         gap: 8px;
         font-size: 18px;
         color: rgb(249, 249, 249);
-        > .tech-pill {
+
+        > .pill-wrapper {
           display: flex;
-          background-color: rgba(42, 42, 42, 0.652);
-          padding: 4px 12px;
-          font-size: 16px;
-          border-radius: 100px;
+          gap: 8px;
+          > .tech-pill {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(42, 42, 42, 0.652);
+            padding: 4px 12px;
+            font-size: 16px;
+            border-radius: 100px;
+          }
+        }
+        > .link-wrapper {
+          display: flex;
+          gap: 8px;
+          > a {
+            cursor: pointer;
+            > img {
+              height: 24px;
+              width: 24px;
+            }
+          }
         }
       }
     }
@@ -103,8 +122,10 @@
           font-size: 16px;
         }
         > .tech-wrapper {
-          > .tech-pill {
-            font-size: 14px;
+          > .pill-wrapper {
+            > .tech-pill {
+              font-size: 14px;
+            }
           }
         }
       }
@@ -134,8 +155,10 @@
           font-size: 16px;
         }
         > .tech-wrapper {
-          > .tech-pill {
-            font-size: 14px;
+          > .pill-wrapper {
+            > .tech-pill {
+              font-size: 14px;
+            }
           }
         }
       }
@@ -156,20 +179,22 @@
 
       > .text-content-wrapper {
         top: 55%;
-        padding: 8px;
+        padding: 20px;
 
         > .title-wrapper {
           > .title {
             margin-bottom: 4px;
-            font-size: 20px;
+            font-size: 18px;
           }
         }
         > .description {
-          font-size: 16px;
+          font-size: 14px;
         }
         > .tech-wrapper {
-          > .tech-pill {
-            font-size: 14px;
+          > .pill-wrapper {
+            > .tech-pill {
+              font-size: 12px;
+            }
           }
         }
       }
@@ -184,7 +209,7 @@
     > .card-content-wrapper {
       > .text-content-wrapper {
         top: 60%;
-        padding: 8px;
+        padding: 14px;
       }
     }
   }
@@ -197,7 +222,7 @@
     > .card-content-wrapper {
       > .text-content-wrapper {
         top: 60%;
-        padding: 8px;
+        padding: 16px;
       }
     }
   }

@@ -2,20 +2,189 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   height: 100dvh;
   width: 100vw;
   background-color: rgb(218, 218, 218);
+
+  > img {
+    position: absolute;
+    top: 20%;
+    right: 11%;
+    z-index: 2;
+    height: 64px;
+  }
+
+  > .imprint-button {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    cursor: pointer;
+  }
+
+  > a {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    z-index: 100000;
+  }
+
+  > .imprint-section {
+    position: absolute;
+    height: 70%;
+    width: 80%;
+    max-width: 1440px;
+    max-height: 1000px;
+    z-index: 0;
+    overflow-y: auto;
+    border-radius: 4px;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(45, 45, 45, 0.3);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(45, 45, 45, 0.5);
+    }
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(45, 45, 45, 0.3) transparent;
+
+    .imprint-content {
+      padding: 64px;
+      color: rgb(45, 45, 45);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: rgb(45, 45, 45);
+      }
+
+      h1 {
+        margin-top: 0;
+      }
+
+      h2 {
+        margin-top: 30px;
+      }
+
+      h3 {
+        margin-top: 25px;
+      }
+
+      .contact-info {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+      }
+
+      .privacy-section {
+        margin-top: 40px;
+      }
+
+      .highlight {
+        background-color: #f1f1f1;
+        padding: 15px;
+        border-left: 4px solid rgb(45, 45, 45);
+        margin: 20px 0;
+      }
+
+      .all-caps {
+        text-transform: uppercase;
+      }
+
+      footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        text-align: center;
+        font-size: 0.9em;
+        color: rgb(45, 45, 45);
+      }
+
+      a {
+        color: rgb(45, 45, 45);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+
+        li {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
 
   > app-device {
     height: 80%;
     width: 80%;
     max-width: 1440px;
     max-height: 1000px;
+    z-index: 3;
+
+    &.shoot-up {
+      animation: shootUp 0.75s cubic-bezier(0.514, 0, 0.981, 0.566) forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shootUp {
+      from {
+        transform: translateY(0px) rotate(0);
+      }
+      to {
+        transform: translateY(-200%) rotate(60deg);
+      }
+    }
   }
 }
 
 @media (max-width: 1440px) {
   .landing-section > app-device {
+    height: 70%;
+    width: 80%;
+    max-height: unset;
+  }
+
+  .landing-section > .imprint-section {
     height: 70%;
     width: 80%;
     max-height: unset;
@@ -27,12 +196,26 @@
     height: 70%;
     width: 90%;
   }
+
+  .landing-section > .imprint-section {
+    height: 70%;
+    width: 90%;
+  }
 }
 
 @media (max-width: 750px) {
   .landing-section > app-device {
     height: 60%;
     width: 97%;
+  }
+
+  .landing-section > .imprint-section {
+    height: 60%;
+    width: 97%;
+  }
+
+  .landing-section > .imprint-section .imprint-content {
+    padding: 20px;
   }
 }
 
@@ -41,5 +224,15 @@
     height: 100%;
     width: 100%;
     background-color: rgb(41, 41, 41);
+  }
+
+  .landing-section > .imprint-section {
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .landing-section > .imprint-section .imprint-content {
+    padding: 15px;
   }
 }

@@ -18,7 +18,9 @@ import { Router } from '@angular/router';
 })
 export class DeviceComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null;
+  private imprintSubscription: Subscription | null = null;
   buttonID: number = 0;
+  isImprint: boolean = false;
   page: string = 'home';
   lastPressedButton: number = 1;
 
@@ -30,6 +32,11 @@ export class DeviceComponent implements OnInit, OnDestroy {
   @HostListener('window:wheel', ['$event'])
   onScrollWheel(event: WheelEvent) {
     let jump: number = 1;
+    if (this.isImprint) {
+      jump = 0;
+    } else {
+      jump = 1;
+    }
 
     if (event.deltaY > 0) {
       if (this.lastPressedButton == 3) {
@@ -93,22 +100,27 @@ export class DeviceComponent implements OnInit, OnDestroy {
   }
 
   scrollWheel() {
-    console.log('scrolled');
     this.navigateToScreenPage(1);
   }
 
   ngOnInit(): void {
     this.checkPath();
-    this.buttonHandlerService.buttonID$.subscribe((ID) => {
+    this.subscription = this.buttonHandlerService.buttonID$.subscribe((ID) => {
       this.buttonID = ID;
       if (this.buttonID !== 4) {
         this.updateLastPressedButton(ID);
       }
     });
+
+    this.imprintSubscription = this.buttonHandlerService.isImprint$.subscribe(
+      (state) => {
+        this.isImprint = state;
+      }
+    );
   }
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
-    window.removeEventListener('wheel', () => this.scrollWheel);
+    this.imprintSubscription?.unsubscribe();
   }
 }

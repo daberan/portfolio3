@@ -12,7 +12,7 @@ export class CardDataService {
       links: ['www.catnip.davidberan.com'],
       background: '/videos/catnip.mp4',
       description:
-        'A personal project to practice using classes and working with the canvas context in javascript, as well as experimenting with pixel art.',
+        'personal project to practice using classes and working with the canvas context in javascript.',
     },
     {
       title: 'Join - Project Management Tool',
@@ -20,8 +20,7 @@ export class CardDataService {
       skills: ['Code'],
       links: ['string'],
       background: 'videos/join.mp4',
-      description:
-        'A Kanban project management tool. Firebase was used as the database.',
+      description: 'A Kanban project management tool.',
     },
     {
       title: 'CSS shadow generator',

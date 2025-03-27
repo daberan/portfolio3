@@ -1,3 +1,343 @@
 <div class="landing-section">
-  <app-device></app-device>
+  @if (!isImprint) {
+  <div class="imprint-button" (click)="toggleImprint(true)">Imprint</div>
+  }
+
+  <app-device class="" [class.shoot-up]="isImprint"></app-device>
+  <img src="/icons/back.svg" alt="" (click)="toggleImprint(false)" />
+  <div class="imprint-section">
+    <div class="imprint-content">
+      <header>
+        <h1>Imprint & Privacy Policy</h1>
+      </header>
+
+      <section id="impressum">
+        <h2>Impressum</h2>
+        <div class="contact-info">
+          <p>
+            <strong>David Beran</strong><br />
+            Büdingergasse 3/3/15<br />
+            1180 Wien
+          </p>
+
+          <p>
+            <strong>Contact</strong><br />
+            E-Mail:
+            <a href="mailto:mail@davidberan.com">mail&#64;davidberan.com</a>
+          </p>
+        </div>
+        <p>
+          Quelle:
+          <a href="https://www.e-recht24.de" target="_blank"
+            >https://www.e-recht24.de</a
+          >
+        </p>
+      </section>
+
+      <section id="privacy-policy" class="privacy-section">
+        <h2>Privacy Policy</h2>
+
+        <div id="overview">
+          <h3>1. Data Protection at a Glance</h3>
+          <h4>General Information</h4>
+          <p>
+            The following information provides a simple overview of what happens
+            to your personal data when you visit this website. Personal data is
+            any data with which you could be personally identified. Detailed
+            information on data protection can be found in our privacy policy
+            listed below this text.
+          </p>
+
+          <h4>Data Collection on This Website</h4>
+          <p>
+            <strong
+              >Who is responsible for data collection on this website?</strong
+            ><br />
+            The data processing on this website is carried out by the website
+            operator. You can find their contact details in the 'Responsible
+            Party' section of this privacy policy.
+          </p>
+
+          <p>
+            <strong>How do we collect your data?</strong><br />
+            Your data is collected in part by you providing it to us. This may
+            include data that you enter into a contact form. Other data is
+            automatically collected or with your consent when you visit the
+            website by our IT systems. These are mainly technical data (e.g.,
+            internet browser, operating system, or time of page visit). This
+            data is collected automatically as soon as you enter this website.
+          </p>
+
+          <p>
+            <strong>How do we use your data?</strong><br />
+            Some of the data is collected to ensure the proper functioning of
+            the website. Other data can be used to analyze your user behavior.
+          </p>
+
+          <h4>Your Rights Regarding Your Data</h4>
+          <p>
+            You have the right to obtain free information about the origin,
+            recipient, and purpose of your stored personal data at any time. You
+            also have the right to request the correction or deletion of this
+            data. If you have given your consent to data processing, you can
+            revoke this consent at any time for the future. You also have the
+            right, under certain circumstances, to demand the restriction of the
+            processing of your personal data. Furthermore, you have a right to
+            lodge a complaint with the competent supervisory authority. For this
+            and other questions regarding data protection, you can contact us at
+            any time.
+          </p>
+        </div>
+
+        <div id="hosting">
+          <h3>2. Hosting</h3>
+          <p>We host the content of our website with the following provider:</p>
+
+          <h4>World4You Internet Services GmbH</h4>
+          <p>
+            The provider is World4You Internet Services GmbH,
+            Wolfgang-Pauli-Straße 2, BT3, 4020 Linz, Österreich (hereinafter
+            referred to as World4You). When you visit our website, World4You
+            collects various log files including your IP addresses.
+          </p>
+
+          <div class="contact-info">
+            <p>
+              <strong>Firmeninformation</strong><br />
+              World4You Internet Services GmbH<br />
+              Wolfgang-Pauli-Straße 2, BT3<br />
+              4020 Linz<br />
+              Österreich
+            </p>
+
+            <p>
+              <strong>Kontaktdaten</strong><br />
+              T: +43 50 5859<br />
+              E: office&#64;world4you.com
+            </p>
+
+            <p>
+              <strong>Geschäftsführer</strong><br />
+              Frau Mag. Sandra Trummer-Gabler
+            </p>
+
+            <p>
+              <strong>Datenschutzbeauftragter</strong><br />
+              IONOS SE<br />
+              Elgendorfer Str. 57<br />
+              56410 Montabaur<br />
+              E-Mail: dataprotection&#64;world4you.com
+            </p>
+          </div>
+
+          <p>
+            The use of World4You is based on Art. 6 para. 1 lit. f DSGVO. We
+            have a legitimate interest in a reliable presentation of our
+            website. If consent has been requested, processing will be carried
+            out exclusively on the basis of Art. 6 para. 1 lit. a DSGVO and § 25
+            para. 1 TTDSG, provided that the consent includes the storage of
+            cookies or access to information on the user's device (e.g., device
+            fingerprinting) within the meaning of the TTDSG. The consent can be
+            revoked at any time.
+          </p>
+        </div>
+
+        <div id="general-info">
+          <h3>3. General Notes and Mandatory Information</h3>
+          <h4>Data Protection</h4>
+          <p>
+            The operators of these pages take the protection of your personal
+            data very seriously. We treat your personal data confidentially and
+            in accordance with the statutory data protection regulations and
+            this privacy policy.
+          </p>
+
+          <h4>Responsible Party Notice</h4>
+          <div class="contact-info">
+            <p>The responsible party for data processing on this website is:</p>
+            <p>
+              <strong>David Beran</strong><br />
+              Büdingergasse 3/3/15<br />
+              1180 Wien
+            </p>
+
+            <p>
+              Email:
+              <a href="mailto:mail@davidberan.com">mail&#64;davidberan.com</a>
+            </p>
+          </div>
+
+          <p>
+            The responsible party is the natural or legal person who alone or
+            jointly with others decides on the purposes and means of processing
+            personal data (e.g., names, e-mail addresses, etc.).
+          </p>
+
+          <h4>Storage Duration</h4>
+          <p>
+            Unless a specific storage period has been specified within this
+            privacy policy, your personal data will remain with us until the
+            purpose for data processing ceases to apply. If you assert a
+            legitimate request for deletion or revoke consent to data
+            processing, your data will be deleted unless we have other legally
+            permissible reasons for storing your personal data (e.g., tax or
+            commercial retention periods); in the latter case, the deletion will
+            take place after these reasons cease to apply.
+          </p>
+
+          <h4>
+            General Notes on Legal Bases for Data Processing on This Website
+          </h4>
+          <p>
+            If you have given your consent to data processing, we process your
+            personal data on the basis of Art. 6 para. 1 lit. a DSGVO or Art. 9
+            para. 2 lit. a DSGVO, if special categories of data according to
+            Art. 9 para. 1 DSGVO are processed. In the event of express consent
+            to the transfer of personal data to third countries, data processing
+            is also based on Art. 49 para. 1 lit. a DSGVO. If you have consented
+            to the storage of cookies or access to information on your device
+            (e.g., via device fingerprinting), data processing is additionally
+            based on § 25 para. 1 TTDSG. The consent can be revoked at any time.
+            If your data is necessary for the performance of a contract or for
+            the implementation of pre-contractual measures, we process your data
+            on the basis of Art. 6 para. 1 lit. b DSGVO. Furthermore, we process
+            your data if it is necessary to fulfill a legal obligation based on
+            Art. 6 para. 1 lit. c DSGVO. Data processing may also be based on
+            our legitimate interests pursuant to Art. 6 para. 1 lit. f DSGVO.
+            The relevant legal bases for data processing in each individual case
+            are provided in the following paragraphs of this privacy policy.
+          </p>
+
+          <h4>Recipients of Personal Data</h4>
+          <p>
+            In the course of our business activities, we cooperate with various
+            external entities. It is sometimes necessary to transfer personal
+            data to these external entities. We only pass on personal data to
+            external entities if it is necessary for the fulfillment of a
+            contract, if we are legally obligated to do so (e.g., disclosure of
+            data to tax authorities), if we have a legitimate interest pursuant
+            to Art. 6 para. 1 lit. f DSGVO in the disclosure, or if another
+            legal basis permits the data transfer. When using data processors,
+            we only transfer personal data of our customers based on a valid
+            data processing agreement. In the case of joint processing, a joint
+            processing agreement is concluded.
+          </p>
+
+          <h4>Revocation of Your Consent to Data Processing</h4>
+          <p>
+            Many data processing operations are only possible with your express
+            consent. You can revoke consent that has already been given at any
+            time. The legality of the data processing carried out before the
+            revocation remains unaffected by the revocation.
+          </p>
+
+          <h4>
+            Right to Object to Data Collection in Special Cases and to Direct
+            Marketing (Art. 21 DSGVO)
+          </h4>
+          <div class="highlight">
+            <p class="all-caps">
+              IF DATA PROCESSING IS BASED ON ART. 6 PARA. 1 LIT. E OR F DSGVO,
+              YOU HAVE THE RIGHT TO OBJECT, ON GROUNDS RELATING TO YOUR
+              PARTICULAR SITUATION, AT ANY TIME TO THE PROCESSING OF YOUR
+              PERSONAL DATA; THIS ALSO APPLIES TO PROFILING BASED ON THESE
+              PROVISIONS. THE RESPECTIVE LEGAL BASIS ON WHICH PROCESSING IS
+              BASED CAN BE FOUND IN THIS PRIVACY POLICY. IF YOU OBJECT, WE WILL
+              NO LONGER PROCESS YOUR AFFECTED PERSONAL DATA UNLESS WE CAN
+              DEMONSTRATE COMPELLING LEGITIMATE GROUNDS FOR THE PROCESSING WHICH
+              OVERRIDE YOUR INTERESTS, RIGHTS, AND FREEDOMS OR FOR THE
+              ESTABLISHMENT, EXERCISE, OR DEFENSE OF LEGAL CLAIMS (OBJECTION
+              PURSUANT TO ART. 21 PARA. 1 DSGVO).
+            </p>
+
+            <p class="all-caps">
+              IF YOUR PERSONAL DATA IS PROCESSED FOR DIRECT MARKETING PURPOSES,
+              YOU HAVE THE RIGHT TO OBJECT AT ANY TIME TO THE PROCESSING OF YOUR
+              PERSONAL DATA FOR THE PURPOSE OF SUCH ADVERTISING; THIS ALSO
+              APPLIES TO PROFILING INSOFAR AS IT IS RELATED TO SUCH DIRECT
+              MARKETING. IF YOU OBJECT, YOUR PERSONAL DATA WILL SUBSEQUENTLY NO
+              LONGER BE USED FOR DIRECT MARKETING PURPOSES (OBJECTION PURSUANT
+              TO ART. 21 PARA. 2 DSGVO).
+            </p>
+          </div>
+
+          <h4>Right to Lodge a Complaint with the Supervisory Authority</h4>
+          <p>
+            In the event of violations of the GDPR, data subjects have the right
+            to lodge a complaint with a supervisory authority, in particular in
+            the Member State of their habitual residence, place of work, or
+            place of the alleged infringement. The right to lodge a complaint is
+            without prejudice to any other administrative or judicial remedy.
+          </p>
+
+          <h4>Right to Data Portability</h4>
+          <p>
+            You have the right to have data which we process automatically based
+            on your consent or in fulfillment of a contract handed over to you
+            or to a third party in a standard, machine-readable format. If you
+            request the direct transfer of the data to another responsible
+            party, this will only be done to the extent technically feasible.
+          </p>
+
+          <h4>Information, Correction, and Deletion</h4>
+          <p>
+            Within the framework of the applicable legal provisions, you have
+            the right to free information about your stored personal data, its
+            origin and recipient and the purpose of data processing at any time
+            and, if applicable, a right to correction or deletion of this data.
+            For this purpose and for further questions regarding personal data,
+            you can contact us at any time.
+          </p>
+
+          <h4>Right to Restrict Processing</h4>
+          <p>
+            You have the right to request the restriction of the processing of
+            your personal data. You can contact us at any time for this purpose.
+            The right to restrict processing exists in the following cases:
+          </p>
+
+          <ul>
+            <li>
+              If you dispute the accuracy of your personal data stored with us,
+              we usually need time to verify this. For the duration of the
+              review, you have the right to request the restriction of the
+              processing of your personal data.
+            </li>
+            <li>
+              If the processing of your personal data was/is unlawful, you can
+              request the restriction of data processing instead of deletion.
+            </li>
+            <li>
+              If we no longer need your personal data, but you need it for the
+              exercise, defense, or assertion of legal claims, you have the
+              right to request the restriction of the processing of your
+              personal data instead of deletion.
+            </li>
+            <li>
+              If you have filed an objection pursuant to Art. 21 para. 1 DSGVO,
+              a balance must be struck between your interests and ours. As long
+              as it has not yet been determined whose interests outweigh the
+              other, you have the right to request the restriction of the
+              processing of your personal data.
+            </li>
+          </ul>
+
+          <p>
+            If you have restricted the processing of your personal data, these
+            data – apart from their storage – may only be processed with your
+            consent or for the establishment, exercise, or defense of legal
+            claims or for the protection of the rights of another natural or
+            legal person or for reasons of important public interest of the
+            European Union or a Member State.
+          </p>
+        </div>
+
+        <!-- Plugins and Tools section removed as requested -->
+      </section>
+
+      <footer>
+        <p>© 2025 David Beran. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
 </div>

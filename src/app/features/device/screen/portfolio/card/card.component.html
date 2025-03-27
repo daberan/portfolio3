@@ -21,9 +21,15 @@
         {{ cardData.description }}
       </div>
       <div class="tech-wrapper">
-        @for (item of cardData.software; track $index) {
-        <div class="tech-pill">{{ item }}</div>
-        }
+        <div class="pill-wrapper">
+          @for (item of cardData.software; track $index) {
+          <div class="tech-pill">{{ item }}</div>
+          }
+        </div>
+        <div class="link-wrapper">
+          <a href="http://"><img src="/icons/link.svg" alt="" /></a>
+          <a href="http://"><img src="/icons/git.svg" alt="" /></a>
+        </div>
       </div>
     </div>
   </div>
