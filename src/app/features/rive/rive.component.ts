@@ -60,11 +60,9 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
   private updateMousePosition = (e: MouseEvent) => {
     if (!this.xInput || !this.yInput) return;
 
-    // Map X: Center is 50, left is 0, right is 100
     let xMapped =
       50 + ((e.clientX - this.canvasCenterX) / window.innerWidth) * 50 * 2;
 
-    // Map Y: Center is 50, top is 100, bottom is 0
     let yMapped =
       50 - ((e.clientY - this.canvasCenterY) / window.innerHeight) * 50 * 2;
 

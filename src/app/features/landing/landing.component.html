@@ -4,7 +4,11 @@
   }
 
   <app-device class="" [class.shoot-up]="isImprint"></app-device>
-  <img src="/icons/back.svg" alt="" (click)="toggleImprint(false)" />
+  @if (isImprint) {<img
+    src="/icons/back.svg"
+    alt=""
+    (click)="toggleImprint(false)"
+  />} @if (isImprint) {
   <div class="imprint-section">
     <div class="imprint-content">
       <header>
@@ -340,4 +344,5 @@
       </footer>
     </div>
   </div>
+  }
 </div>

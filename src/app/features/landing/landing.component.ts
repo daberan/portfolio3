@@ -15,8 +15,6 @@ export class LandingComponent implements OnInit, OnDestroy {
   isImprint: boolean = false;
 
   toggleImprint(state: boolean) {
-    console.log('what', this.isImprint);
-
     this.buttonHandlerService.toggleImprint(state);
   }
 

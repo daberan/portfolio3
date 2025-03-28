@@ -44,7 +44,6 @@ export class ContactComponent implements AfterViewInit {
           },
           complete: () => {
             this.handleSubmitSuccess();
-            // console.info('send post complete');
           },
         });
     } else if (ngForm.submitted && ngForm.form.valid && this.mailTest) {

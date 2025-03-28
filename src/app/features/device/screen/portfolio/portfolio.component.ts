@@ -23,12 +23,10 @@ export class PortfolioComponent implements AfterViewInit {
   cardIsClicked: boolean = false;
   activeCardID: number = 0;
 
-  // For drag scrolling
   isDragging = false;
   startX!: number;
   scrollLeft!: number;
 
-  // For drag physics
   lastMouseX!: number;
   velocityX = 0;
   velocityTracker: number[] = [];

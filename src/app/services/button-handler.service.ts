@@ -19,6 +19,5 @@ export class ButtonHandlerService {
 
   toggleImprint(state: boolean) {
     this.isImprint.next(state);
-    console.log(state);
   }
 }
