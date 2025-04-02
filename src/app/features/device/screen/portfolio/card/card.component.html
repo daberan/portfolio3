@@ -27,8 +27,22 @@
           }
         </div>
         <div class="link-wrapper">
-          <a href="http://"><img src="/icons/link.svg" alt="" /></a>
-          <a href="http://"><img src="/icons/git.svg" alt="" /></a>
+          <a
+            [href]="cardData.links[0]"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/icons/link.svg" alt="External link" />
+          </a>
+          @if (cardData.links[1]) {
+          <a
+            [href]="cardData.links[1]"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/icons/git.svg" alt="GitHub repository" />
+          </a>
+          }
         </div>
       </div>
     </div>

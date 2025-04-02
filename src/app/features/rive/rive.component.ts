@@ -20,11 +20,17 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
   private canvasCenterY: number = 0;
   private xInput: any;
   private yInput: any;
+  private isMobile: boolean = false;
 
-  constructor() {}
+  private defaultXValue: number = 100;
+  private defaultYValue: number = 70;
+
+  constructor() {
+    this.detectMobileDevice();
+  }
 
   ngOnInit(): void {
-    window.addEventListener('resize', this.updateCanvasCenter);
+    window.addEventListener('resize', this.handleResize);
   }
 
   ngAfterViewInit() {
@@ -43,10 +49,41 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
         this.xInput = inputs.find((input) => input.name === 'xAxis');
         this.yInput = inputs.find((input) => input.name === 'yAxis');
 
-        window.addEventListener('mousemove', this.updateMousePosition);
+        if (!this.isMobile) {
+          window.addEventListener('mousemove', this.updateMousePosition);
+        } else {
+          this.setDefaultValues();
+        }
       },
     });
   }
+
+  private detectMobileDevice(): void {
+    this.isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+  }
+
+  private setDefaultValues(): void {
+    if (this.xInput && this.yInput) {
+      this.xInput.value = this.defaultXValue;
+      this.yInput.value = this.defaultYValue;
+    }
+  }
+
+  private handleResize = () => {
+    this.updateCanvasCenter();
+    this.detectMobileDevice();
+
+    if (this.isMobile) {
+      window.removeEventListener('mousemove', this.updateMousePosition);
+      this.setDefaultValues();
+    } else if (this.xInput && this.yInput) {
+      window.removeEventListener('mousemove', this.updateMousePosition);
+      window.addEventListener('mousemove', this.updateMousePosition);
+    }
+  };
 
   private updateCanvasCenter = () => {
     const canvas = this.canvasRef.nativeElement;
@@ -58,7 +95,7 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
   private updateMousePosition = (e: MouseEvent) => {
-    if (!this.xInput || !this.yInput) return;
+    if (!this.xInput || !this.yInput || this.isMobile) return;
 
     let xMapped =
       50 + ((e.clientX - this.canvasCenterX) / window.innerWidth) * 50 * 2;
@@ -71,7 +108,7 @@ export class RiveComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
   ngOnDestroy() {
-    window.removeEventListener('resize', this.updateCanvasCenter);
+    window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('mousemove', this.updateMousePosition);
     if (this.rive) {
       this.rive.cleanup();

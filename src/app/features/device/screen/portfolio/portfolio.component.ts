@@ -48,6 +48,8 @@ export class PortfolioComponent implements AfterViewInit {
 
         if (index === this.activeCardID) {
           try {
+            console.log(this.activeCardID);
+
             await video.play();
           } catch (error) {
             console.error('Error playing video:', error);
@@ -65,17 +67,18 @@ export class PortfolioComponent implements AfterViewInit {
     setTimeout(() => {
       this.fadeIn = false;
     }, 700);
-    const scrollContainer = document.querySelector('.cards-wrapper');
-    scrollContainer!.addEventListener('scroll', () => {
+    const scrollContainer = this.cardsWrapper.nativeElement;
+    scrollContainer.addEventListener('scroll', () => {
       this.activeCardID = this.getCardAtCenter();
       this.handleVideoPlay();
     });
+
     this.initDragScroll();
     this.handleVideoPlay();
   }
 
   initDragScroll() {
-    const slider: any = document.querySelector('.cards-wrapper');
+    const slider = this.cardsWrapper.nativeElement;
     const isTouchDevice =
       'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
@@ -107,7 +110,7 @@ export class PortfolioComponent implements AfterViewInit {
     }
 
     this.isDragging = true;
-    const slider: any = document.querySelector('.cards-wrapper');
+    const slider = this.cardsWrapper.nativeElement;
 
     this.startX = e.pageX - slider.offsetLeft;
     this.lastMouseX = e.pageX;
@@ -123,7 +126,7 @@ export class PortfolioComponent implements AfterViewInit {
     }
     if (!this.isDragging) return;
 
-    const slider: any = document.querySelector('.cards-wrapper');
+    const slider = this.cardsWrapper.nativeElement;
     const x = e.pageX - slider.offsetLeft;
     e.preventDefault();
 
@@ -169,7 +172,7 @@ export class PortfolioComponent implements AfterViewInit {
 
   applyMomentum() {
     this.ngZone.runOutsideAngular(() => {
-      const slider: any = document.querySelector('.cards-wrapper');
+      const slider = this.cardsWrapper.nativeElement;
       let lastTimestamp = performance.now();
       const animate = (timestamp: number) => {
         if (Math.abs(this.velocityX) < 0.1) {
@@ -206,12 +209,12 @@ export class PortfolioComponent implements AfterViewInit {
 
     setTimeout(() => {
       const activeCard = document.querySelector('.isActive');
-      const scrollContainer = document.querySelector('.cards-wrapper');
+      const scrollContainer = this.cardsWrapper.nativeElement;
 
       if (activeCard && scrollContainer) {
-        const containerRect = document
-          .querySelector('.portfolio-section')!
-          .getBoundingClientRect();
+        const portfolioSection = document.querySelector('.portfolio-section');
+
+        const containerRect = portfolioSection!.getBoundingClientRect();
         const containerCenter = containerRect.left + containerRect.width / 2;
 
         const cardRect = activeCard.getBoundingClientRect();
@@ -229,9 +232,20 @@ export class PortfolioComponent implements AfterViewInit {
   }
 
   getCardAtCenter(): number {
-    const scrollContainer = document.querySelector('.cards-wrapper');
-    const containerRect = scrollContainer!.getBoundingClientRect();
+    const scrollContainer = this.cardsWrapper.nativeElement;
+
+    if (!scrollContainer) {
+      console.error('Cards wrapper not found');
+      return 0;
+    }
+
+    const containerRect = scrollContainer.getBoundingClientRect();
     const containerCenter = containerRect.left + containerRect.width / 2;
+    const portfolioSection = document.querySelector('.portfolio-section');
+    if (!portfolioSection) {
+      console.error('Portfolio section not found');
+      return 0;
+    }
 
     const cards = document.querySelectorAll('app-card');
     let closestCardId = 0;

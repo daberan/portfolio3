@@ -84,9 +84,9 @@ export class DeviceComponent implements OnInit, OnDestroy {
   checkPath() {
     if (window.location.pathname === '/home') {
       this.lastPressedButton = 1;
-    } else if (window.location.pathname === '/contact') {
-      this.lastPressedButton = 2;
     } else if (window.location.pathname === '/about') {
+      this.lastPressedButton = 2;
+    } else if (window.location.pathname === '/contact') {
       this.lastPressedButton = 3;
     } else if (window.location.pathname === '/portfolio') {
       this.lastPressedButton = 5;
