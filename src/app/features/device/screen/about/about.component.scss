@@ -19,8 +19,10 @@
     }
   }
   > .form-wrapper {
-    // overflow-y: hidden;
     padding: 0 32px;
+    &.isMobile {
+      overflow-y: scroll !important;
+    }
 
     > .about-me-wrapper {
       display: flex;
@@ -44,6 +46,10 @@
       flex-direction: column;
       gap: 12px;
       margin-bottom: auto;
+      > h3 {
+        font-size: 18px;
+        font-weight: 500;
+      }
 
       > h2 {
         font-size: 36px;
@@ -92,22 +98,23 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .about-section {
     > .form-wrapper {
+      padding: 0 18px;
       > .about-me-wrapper {
         > h2 {
-          font-size: 24px;
+          font-size: 22px;
         }
 
         > p {
-          font-size: 18px;
+          font-size: 16px;
         }
         margin-bottom: 32px;
       }
 
       > .skillset-wrapper {
-        margin-bottom: 24px;
+        margin-bottom: 12px;
         gap: 14px;
 
         > h2 {
@@ -119,7 +126,7 @@
           max-width: 800px;
           > .tech-slider {
             > .tech {
-              font-size: 18px;
+              font-size: 14px;
               > img {
                 width: 50px;
                 height: 50px;
@@ -143,7 +150,7 @@
         }
 
         > p {
-          font-size: 14px;
+          font-size: 12px;
         }
         margin-bottom: 16px;
       }

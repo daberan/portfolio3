@@ -341,6 +341,12 @@
   }
 }
 
+@media (max-height: 650px) {
+  .logo {
+    display: none;
+  }
+}
+
 @media (max-width: 650px) {
   .device-section {
     > .device-wrapper {

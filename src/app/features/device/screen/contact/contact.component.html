@@ -1,5 +1,9 @@
 <div class="contact-section" [class.fade-in]="fadeIn">
-  <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+  <form
+    (ngSubmit)="onSubmit(contactForm)"
+    #contactForm="ngForm"
+    [class.isMobile]="isMobile"
+  >
     <div class="input-wrapper">
       <div class="label-wrapper">
         <label for="name">Name</label>
@@ -44,8 +48,32 @@
       </div>
     </div>
 
+    <div class="policy-wrapper">
+      <input
+        type="checkbox"
+        id="privacyPolicy"
+        name="privacyPolicy"
+        #privacyPolicy="ngModel"
+        [(ngModel)]="contactData.privacyPolicy"
+        required
+      />
+      <p class="check-text">
+        I've read the
+        <a (click)="clickPrivacy(true)" href="javascript:void(0)"
+          >privacy policy</a
+        >
+        and agree to the processing of my data as outlined.
+      </p>
+    </div>
+
     <div class="button-wrapper">
-      <input type="submit" value="submit" />
+      <input
+        type="submit"
+        value="submit"
+        [class.disabled]="
+          !privacyPolicy.valid || !name.valid || !email.valid || !message.valid
+        "
+      />
 
       <div class="error-wrapper">
         @if (!name.valid && name.touched) {
@@ -54,7 +82,9 @@
         <p>Please enter a valid email adress!</p>
         } @if (!message.valid && message.touched) {
         <p>Please enter a message!</p>
-        }@if (submitSuccess) {
+        } @if (!privacyPolicy.valid && name.touched) {
+        <p>Please accept the privacy policy!</p>
+        } @if (submitSuccess) {
         <p class="success">Message sent!</p>
         }
       </div>

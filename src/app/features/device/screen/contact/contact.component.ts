@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ButtonHandlerService } from '../../../../services/button-handler.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,14 +10,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent implements AfterViewInit {
+  constructor(private buttonHandlerService: ButtonHandlerService) {
+    this.detectMobileDevice();
+  }
   fadeIn = true;
   http = inject(HttpClient);
   submitSuccess = false;
+  isMobile = false;
 
   contactData = {
     name: '',
     email: '',
     message: '',
+    privacyPolicy: false,
   };
 
   mailTest = false;
@@ -30,6 +36,10 @@ export class ContactComponent implements AfterViewInit {
       },
     },
   };
+
+  clickPrivacy(state: boolean) {
+    this.buttonHandlerService.toggleImprint(state);
+  }
 
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid && !this.mailTest) {
@@ -53,6 +63,13 @@ export class ContactComponent implements AfterViewInit {
 
   handleSubmitSuccess() {
     this.submitSuccess = true;
+  }
+
+  detectMobileDevice(): void {
+    this.isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
   }
 
   ngAfterViewInit() {

@@ -33,7 +33,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
   onScrollWheel(event: WheelEvent) {
     let jump: number = 1;
     if (this.isImprint) {
-      jump = 0;
+      return;
     } else {
       jump = 1;
     }
