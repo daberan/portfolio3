@@ -5,6 +5,7 @@
   height: 100%;
   width: 100%;
   color: rgb(45, 45, 45);
+  scrollbar-width: none;
 
   &.fade-in {
     animation: fadeIn 0.5s cubic-bezier(0.05, 0.22, 0.2, 1);
@@ -18,8 +19,9 @@
       opacity: 1;
     }
   }
-  > .form-wrapper {
+  > .content-wrapper {
     padding: 0 32px;
+
     &.isMobile {
       overflow-y: scroll !important;
     }
@@ -100,7 +102,7 @@
 
 @media (max-width: 1300px) {
   .about-section {
-    > .form-wrapper {
+    > .content-wrapper {
       padding: 0 18px;
       > .about-me-wrapper {
         > h2 {
@@ -141,7 +143,7 @@
 
 @media (max-width: 800px) {
   .about-section {
-    > .form-wrapper {
+    > .content-wrapper {
       padding: 12px;
       > .about-me-wrapper {
         gap: 8px;
@@ -187,7 +189,7 @@
     overflow-x: none;
     overflow-y: scroll;
 
-    > .form-wrapper {
+    > .content-wrapper {
       overflow-y: scroll;
       gap: 16px;
       padding: 16px;

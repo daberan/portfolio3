@@ -1,8 +1,8 @@
 .card-section {
   display: flex;
   justify-content: center;
-  width: 100%;
-  min-width: 564px;
+  width: 500px;
+
   height: 100%;
   padding: 0px;
 
@@ -99,7 +99,7 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .card-section {
     width: 100%;
     min-width: 320px;

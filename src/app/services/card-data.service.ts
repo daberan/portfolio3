@@ -32,7 +32,10 @@ export class CardDataService {
       title: 'CSS shadow generator',
       software: ['JS', 'HTML', 'CSS'],
       skills: ['Design'],
-      links: ['https://niceshadows.com'],
+      links: [
+        'https://niceshadows.com',
+        'https://github.com/daberan/niceshadows',
+      ],
       background: 'videos/niceshadow.mp4',
       description:
         'A CSS shadow generator to generate realistic shadows directly as CSS code.',

@@ -49,9 +49,7 @@ export class PortfolioComponent implements AfterViewInit {
         if (index === this.activeCardID) {
           try {
             await video.play();
-          } catch (error) {
-            console.error('Error playing video:', error);
-          }
+          } catch (error) {}
         } else {
           video.pause();
         }

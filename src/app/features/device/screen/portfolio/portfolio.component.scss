@@ -25,14 +25,9 @@
     overflow-x: auto;
     user-select: none;
     cursor: grab;
-    scrollbar-width: none;
     -ms-overflow-style: none;
     gap: 40px;
     padding: 16px;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
 
     &:active {
       cursor: grabbing;

@@ -4,11 +4,9 @@
   }
 
   <app-device class="" [class.shoot-up]="isImprint"></app-device>
-  @if (isImprint) {<img
-    src="/icons/back.svg"
-    alt=""
-    (click)="toggleImprint(false)"
-  />} @if (isImprint) {
+  @if (isImprint) {
+  <img src="/icons/back.svg" alt="" (click)="toggleImprint(false)" />}
+  @if(isImprint) {
   <div class="imprint-section">
     <div class="imprint-content">
       <header>
