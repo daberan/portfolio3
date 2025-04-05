@@ -78,6 +78,9 @@
 
 @media (max-width: 650px) {
   .portfolio-section {
+    > .cards-wrapper {
+      padding: 8px;
+    }
     > .arrow-wrapper {
       display: none;
     }

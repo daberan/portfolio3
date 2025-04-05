@@ -231,7 +231,6 @@ export class PortfolioComponent implements AfterViewInit {
     const scrollContainer = this.cardsWrapper.nativeElement;
 
     if (!scrollContainer) {
-      console.error('Cards wrapper not found');
       return 0;
     }
 
@@ -239,7 +238,6 @@ export class PortfolioComponent implements AfterViewInit {
     const containerCenter = containerRect.left + containerRect.width / 2;
     const portfolioSection = document.querySelector('.portfolio-section');
     if (!portfolioSection) {
-      console.error('Portfolio section not found');
       return 0;
     }
 
